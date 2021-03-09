@@ -1,0 +1,44 @@
+using System;
+
+namespace HeapSort
+{
+    class Program
+    {
+        static void Main()
+        {
+            int n;
+            n =  int.Parse(Console.ReadLine());
+            int[] elements = new int[n];
+            for(int i = 0; i < n; i++)
+            {
+                elements[i] = int.Parse(Console.ReadLine());
+            }
+            Console.WriteLine();
+            int number = 1;
+            while(number < n)
+            {
+                (elements,number) =  change(elements, number);
+                number++;
+            }
+
+            for (int i = 0; i < n; i++)
+            {
+                Console.WriteLine(elements[i]);
+            }
+        }
+        static public (int[],int) change(int[] elements,int i)
+        {
+            for(int j = i-1; j >= 0; j--)
+            {
+                if (elements[i] > elements[j])
+                {
+                    int copy = elements[j];
+                    elements[j] = elements[i];
+                    elements[i] = copy;
+                    i = j;
+                }
+            }
+            return (elements,i);
+        }
+    }
+}
